@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ImageButton from './ImageButton'
-import { View, Text, Button, StyleSheet} from 'react-native'
+import { View, Text, Button, StyleSheet, Image} from 'react-native'
 
 class Header extends Component {
     constructor(props) {
@@ -21,8 +21,7 @@ class Header extends Component {
         return (
             <View style={styles.header}>
                 <ImageButton style={styles.arrowImage} onPress={this.eventHandler} imageSource={require('./assets/arrow.png')}/>
-                <ImageButton style={styles.settingsImage} onPress={this.eventHandler} imageSource={require('./assets/settings.png')}/>
-                
+                <ImageButton style={styles.settingsImage} onPress={this.eventHandler} imageSource={require('./assets/settings.png')}/>  
             </View>
         ) 
     }  
@@ -37,7 +36,8 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         paddingRight: 20,
         paddingLeft: 18,
-        paddingTop: 50
+        paddingTop: 50,
+        resizeMode: 'center'
     },
 
     text: {
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
         width: 28,
         height: 30,
         flexShrink: 0,
+        resizeMode: 'center'
     },
 
     arrowImage: {
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
         width: 31,
         height: 30,
         flexShrink: 0,
+        resizeMode: 'center'
     },
 })
 

@@ -18,6 +18,8 @@ function VideoStuff(props) {
         <Text style={styles.description} numberOfLines={3} ellipsizeMode="tail">{props.children}</Text>
       </View>
 
+      <br></br>
+
     </View>
   );
 }

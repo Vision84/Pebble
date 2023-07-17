@@ -4,7 +4,7 @@ import { TouchableOpacity, Image } from 'react-native';
 const ImageButton = ({ onPress, imageSource, style }) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <Image style={style} source={imageSource} resizeMode='center'/>
+      <Image style={style} source={imageSource}/>
     </TouchableOpacity>
   );
 };

@@ -1,19 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
-import Player from './Player';
+import VideoSelector from './VideoSelector';
+import VideoScreen from './VideoScreen';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <LinearGradient
+
+      {/* <LinearGradient
         colors={['#E3B9DC', '#B3C1E3', '#7BCAEA', '#38D5F3', '#01DEFB']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.gradient}
       >
-        <Player/>
-      </LinearGradient>
+        <VideoSelector/>
+      </LinearGradient> */}
+
+      <VideoScreen/>
+
     </View>
   );
 }
