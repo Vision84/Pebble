@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Header from './Header';
 import { Image, View, TextInput, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import VideoStuff from './VideoStuff';
-import ImageButton from './ImageButton';
 
 let descPlaceholder = 'In this video, we make a windmill to get more energy and be better at the game lmao omg asdfasdfasd';
 

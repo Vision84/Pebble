@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ImageButton from './ImageButton';
-import { View, Text, Button, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import Header from './Header';
 import NextButton from './NextButton';
 

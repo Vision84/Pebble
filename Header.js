@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ImageButton from './ImageButton';
-import { View, Text, Button, StyleSheet, Image, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
