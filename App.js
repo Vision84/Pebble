@@ -7,16 +7,16 @@ export default function App() {
   return (
     <View style={styles.container}>
 
-      <LinearGradient
+      {/* <LinearGradient
         colors={['#E3B9DC', '#B3C1E3', '#7BCAEA', '#38D5F3', '#01DEFB']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.gradient}
       >
         <VideoSelector/>
-      </LinearGradient>
+      </LinearGradient> */}
       
-      {/* <VideoScreen/> */} 
+      <VideoScreen/> 
     </View>
   );
 }

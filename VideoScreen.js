@@ -11,7 +11,7 @@ class VideoScreen extends Component {
     this.toggleTranscript = this.toggleTranscript.bind(this);
 
     this.state = {
-      showTranscript: false,
+      showTranscript: true,
     };
   }
 
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F2F2F2',
     maxHeight: windowHeight * 0.4,
     paddingVertical: windowHeight * 0.015,
-    paddingHorizontal: windowWidth * 0.04,
+    paddingHorizontal: windowWidth * 0.05,
     margin: windowWidth * 0.03,
 
     borderColor: 'black',
@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
 
   transcriptText: {
     lineHeight: windowHeight * 0.035,
+    fontSize: windowWidth * 0.03,
   },
 
   nextButton: {
