@@ -11,28 +11,27 @@ const NextButton = ({ onPress }) => {
   );
 };
 
-const { width, height } = Dimensions.get('window');
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: -50,
-    right: 0,
-    width: width,
-    height: height,
-    justifyContent: 'flex-end',
+    width: windowWidth,
+    bottom: windowHeight * 0.0001, // 2% from the bottom of the screen
+    justifyContent: 'center',
     alignItems: 'center',
-    zIndex: -1
+    zIndex: 1, // Increase the zIndex to ensure the button is above other elements
   },
   button: {
     backgroundColor: 'green',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 8,
+    paddingHorizontal: windowWidth * 0.05, // 5% horizontal padding
+    paddingVertical: windowHeight * 0.015, // 1.5% vertical padding
+    borderRadius: windowWidth * 0.02, // 2% border radius
   },
   buttonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: windowWidth * 0.04, // 4% font size
     fontWeight: 'bold',
   },
 });

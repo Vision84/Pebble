@@ -1,66 +1,69 @@
-import React, {Component} from 'react'
-import ImageButton from './ImageButton'
-import { View, Text, Button, StyleSheet, Image} from 'react-native'
+import React, { Component } from 'react';
+import ImageButton from './ImageButton';
+import { View, Text, Button, StyleSheet, Image, Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 class Header extends Component {
-    constructor(props) {
-      super(props)
-    
-      this.state = {
-        text: "Not Pressed"
-      }
-    }
+  constructor(props) {
+    super(props);
 
-    eventHandler = () => {
-        this.setState({
-            text: "Pressed"
-        })
-    }
-    
-    render(){
-        return (
-            <View style={styles.header}>
-                <ImageButton style={styles.arrowImage} onPress={this.eventHandler} imageSource={require('./assets/arrow.png')}/>
-                <ImageButton style={styles.settingsImage} onPress={this.eventHandler} imageSource={require('./assets/settings.png')}/>  
-            </View>
-        ) 
-    }  
-    
+    this.state = {
+      text: 'Not Pressed',
+    };
+  }
+
+  eventHandler = () => {
+    this.setState({
+      text: 'Pressed',
+    });
+  };
+
+  render() {
+    return (
+      <View style={styles.header}>
+        <ImageButton
+          style={[styles.arrowImage, { width: windowWidth * 0.08, height: windowWidth * 0.08 }]}
+          onPress={this.eventHandler}
+          imageSource={require('./assets/arrow.png')}
+        />
+        <ImageButton
+          style={[styles.settingsImage, { width: windowWidth * 0.08, height: windowWidth * 0.08 }]}
+          onPress={this.eventHandler}
+          imageSource={require('./assets/settings.png')}
+        />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    header: {
-        height: 90,
-        backgroundColor: 'transparent',
-        flexDirection: 'row',
-        justifyContent: "space-between",
-        paddingRight: 20,
-        paddingLeft: 18,
-        paddingTop: 50,
-        resizeMode: 'center'
-    },
+  header: {
+    height: windowHeight * 0.10,
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: windowWidth * 0.06,
+    paddingTop: windowHeight * 0.06,
+    resizeMode: 'center',
+  },
 
-    text: {
-        flex: 9,
-    }, 
+  text: {
+    flex: 9,
+  },
 
-    settingsImage: {
-        flex: 1,
-        alignItems: 'flex-end',
-        width: 28,
-        height: 30,
-        flexShrink: 0,
-        resizeMode: 'center'
-    },
+  settingsImage: {
+    alignItems: 'flex-end',
+    flexShrink: 0,
+    resizeMode: 'contain',
+  },
 
-    arrowImage: {
-        flex: 1,
-        alignItems: 'flex-end',
-        width: 31,
-        height: 30,
-        flexShrink: 0,
-        resizeMode: 'center'
-    },
-})
+  arrowImage: {
+    alignItems: 'flex-end',
+    flexShrink: 0,
+    resizeMode: 'contain',
+  },
+});
 
-export default Header
+export default Header;

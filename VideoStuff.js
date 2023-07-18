@@ -1,11 +1,18 @@
 import React from 'react';
-import { TouchableOpacity, View, StyleSheet, Image, Text } from 'react-native';
+import { View, StyleSheet, Image, Text, Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 function VideoStuff(props) {
+  // Calculate dynamic dimensions based on the screen size
+  const videoWidth = windowWidth * 0.4;
+  const videoHeight = windowHeight * 0.13;
+
   return (
     <View style={styles.container}>
 
-      <View style={styles.video}>
+      <View style={[styles.video, { width: videoWidth, height: videoHeight }]}>
         <Image
           source={props.source}
           style={styles.image}
@@ -17,32 +24,29 @@ function VideoStuff(props) {
         <Text style={styles.title}>{props.title}</Text>
         <Text style={styles.description} numberOfLines={3} ellipsizeMode="tail">{props.children}</Text>
       </View>
-
-      <br></br>
-
+      
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: 120,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     padding: 5,
-    gap: 8
+    alignItems: 'center',
   },
 
   video: {
-    flex: 150,
-    paddingVertical: 5
+    paddingVertical: 5,
+    borderRadius: 8,
   },
 
   info: {
-    flex: 160,
+    flex: 1,
     padding: 5,
-    paddingVertical: 10,
-    paddingHorizontal: 3
+    paddingHorizontal: 3,
+    marginLeft: 8,
   },
 
   image: {
@@ -53,15 +57,15 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 25,
-    fontWeight: 'bold'
+    fontSize: windowWidth * 0.065,
+    fontWeight: 'bold',
   },
 
   description: {
-    fontSize: 16,
+    fontSize: windowWidth * 0.034,
     paddingRight: 3,
-    maxWidth: 150
-  }
+    maxWidth: windowWidth * 0.4,
+  },
 });
 
 export default VideoStuff;
