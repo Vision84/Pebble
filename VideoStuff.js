@@ -10,7 +10,7 @@ function VideoStuff(props) {
   const videoHeight = windowHeight * 0.13;
 
   eventHandler = () => {
-    props.navigation.navigate('Video', {title: props.title, subject:props.subject})
+    props.navigation.navigate('Video', {title: props.title, transcript: props.transcript, questions: props.questions, answers: props.answers, correctAnswers: props.correctAnswers}) 
   }
 
   return (
@@ -26,7 +26,6 @@ function VideoStuff(props) {
 
       <View style={styles.info}>
         <Text style={styles.title}>{props.title}</Text>
-        <Text style={styles.description} numberOfLines={3} ellipsizeMode="tail">{props.children}</Text>
       </View>
       
     </TouchableOpacity>
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     paddingHorizontal: 3,
-    marginLeft: 8,
+    marginLeft: 25,
   },
 
   image: {
@@ -68,6 +67,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: windowWidth * 0.034,
     paddingRight: 3,
+    paddingLeft: windowWidth * 0.005,
     maxWidth: windowWidth * 0.4,
   },
 });

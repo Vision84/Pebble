@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 
-const NextButton = ({ onPress }) => {
+const NextButton = ({ onPress, text }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text style={styles.buttonText}>Next</Text>
+        <Text style={styles.buttonText}>{text}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     width: windowWidth,
-    bottom: windowHeight * 0.0001, // 2% from the bottom of the screen
+    bottom: windowHeight * 0.05, // 2% from the bottom of the screen
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 1, // Increase the zIndex to ensure the button is above other elements

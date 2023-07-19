@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Image, View, TextInput, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { Image, View, TextInput, StyleSheet, Dimensions, ScrollView, Text } from 'react-native';
 import VideoStuff from './VideoStuff';
-
-let descPlaceholder =
-  'In this video, we make a windmill to get more energy and be better at the game lmao omg asdfasdfasd';
+import videoData from './latest.json'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -15,8 +13,7 @@ class VideoSelector extends Component {
     super(props);
 
     this.state = {
-      search: '',
-      filter: false,
+      search: ''
     };
   }
 
@@ -26,13 +23,15 @@ class VideoSelector extends Component {
     });
   }
 
-  filterHandler() {
-    this.setState({
-      filter: false,
-    });
-  }
-
   render() {
+    const { search } = this.state;
+    const frameworks = videoData.frameworks;
+
+    // Filter the frameworks based on the search term
+    const filteredFrameworks = frameworks.filter((framework) =>
+      (framework.title.toLowerCase().includes(search.toLowerCase()))
+    );
+    
     return (
       <View style={styles.container}>
         <LinearGradient
@@ -49,83 +48,27 @@ class VideoSelector extends Component {
               placeholder="Search"
               onChangeText={(text) => this.searchChange(text)}
             />
-            <Image
-              onPress={() => this.filterHandler()}
-              source={require('./assets/filter.png')}
-              style={styles.filterImage}
-            />
           </View>
           <ScrollView>
             <View style={styles.videoList}>
-              <VideoStuff
-                source={require('./assets/placeholderthumbnail.jpg')}
-                title="Episode 2"
-                generationCode={null}
-                subject="Entertainment"
-                navigation={this.props.navigation}
-              >
-                {descPlaceholder}
-              </VideoStuff>
-
-              <VideoStuff
-                source={require('./assets/placeholderthumbnail.jpg')}
-                title="Episode 2"
-                generationCode={null}
-                subject="Entertainment"
-                navigation={this.props.navigation}
-              >
-                {descPlaceholder}
-              </VideoStuff>
-
-              <VideoStuff
-                source={require('./assets/placeholderthumbnail.jpg')}
-                title="Episode 2"
-                generationCode={null}
-                subject="Entertainment"
-                navigation={this.props.navigation}
-              >
-                {descPlaceholder}
-              </VideoStuff>
-
-              <VideoStuff
-                source={require('./assets/placeholderthumbnail.jpg')}
-                title="Episode 2"
-                generationCode={null}
-                subject="Entertainment"
-                navigation={this.props.navigation}
-              >
-                {descPlaceholder}
-              </VideoStuff>
-
-              <VideoStuff
-                source={require('./assets/placeholderthumbnail.jpg')}
-                title="Episode 2"
-                generationCode={null}
-                subject="Entertainment"
-                navigation={this.props.navigation}
-              >
-                {descPlaceholder}
-              </VideoStuff>
-
-              <VideoStuff
-                source={require('./assets/placeholderthumbnail.jpg')}
-                title="Episode 2"
-                generationCode={null}
-                subject="Entertainment"
-                navigation={this.props.navigation}
-              >
-                {descPlaceholder}
-              </VideoStuff>
-
-              <VideoStuff
-                source={require('./assets/placeholderthumbnail.jpg')}
-                title="Episode 2"
-                generationCode={null}
-                subject="Entertainment"
-                navigation={this.props.navigation}
-              >
-                {descPlaceholder}
-              </VideoStuff>
+            {filteredFrameworks.length === 0 ? (
+              <View style={styles.noResults}>
+                <Text style={styles.noResultsText}>No Results Found</Text>
+              </View>
+            ) : (
+              filteredFrameworks.map((framework) => (
+                <VideoStuff
+                  key={framework.id}
+                  navigation={this.props.navigation}
+                  source={{ uri: framework.value.thumb }} // Assuming 'thumb' holds the thumbnail URL
+                  title={framework.title}
+                  transcript={framework.value.summary} // Assuming 'summary' holds the transcript
+                  questions={framework.value.questions.map((q) => q.question)} // Extracting questions from the 'questions' array
+                  answers={framework.value.questions.map((q) => q.answers)} // Extracting answers from the 'questions' array
+                  correctAnswers={framework.value.questions.map((q) => q.correct)} // Extracting correct answers from the 'questions' array
+                />
+              ))
+            )}             
             </View>
           </ScrollView>
         </LinearGradient>
@@ -148,6 +91,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: windowWidth * 0.05,
     width: windowWidth,
+    marginTop: windowHeight * 0.05
   },
 
   searchImage: {
@@ -157,15 +101,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     position: 'absolute',
     zIndex: 2,
-  },
-
-  filterImage: {
-    width: windowWidth * 0.06,
-    height: windowWidth * 0.06,
-    resizeMode: 'contain',
-    marginLeft: 'auto',
-    position: 'absolute',
-    marginLeft: windowWidth * 0.86,
   },
 
   input: {
@@ -185,6 +120,21 @@ const styles = StyleSheet.create({
     padding: windowWidth * 0.05,
     justifyContent: 'center',
   },
+
+  noResults: {
+    width: windowWidth,
+    height: windowHeight * 0.05,
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 0,
+    marginLeft: windowWidth * -0.05
+  },
+
+  noResultsText: {
+    fontSize: windowWidth * 0.05,
+  }
 });
 
 export default VideoSelector;

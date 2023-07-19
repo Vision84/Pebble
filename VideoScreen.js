@@ -28,10 +28,14 @@ class VideoScreen extends Component {
     }));
   };
 
+  onPress = () => {
+    this.props.navigation.navigate("Questions", {questions: this.props.route.params.questions, answers: this.props.route.params.answers, correctAnswers:this.props.route.params.correctAnswers})
+  }
+
   render() {
 
     // Access the title and subject parameters from the route object
-    const { title, subject } = this.props.route.params;
+    const { title, subject, transcript } = this.props.route.params;
 
     return (
       <View style={styles.screen}>
@@ -44,7 +48,6 @@ class VideoScreen extends Component {
         <View style={styles.info}>
           <View style={styles.text}>
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.subject}>{subject}</Text>
           </View>
           <View style={styles.transcriptButtonContainer}>
             <ImageButton
@@ -59,13 +62,13 @@ class VideoScreen extends Component {
           <View style={styles.transcriptContainer}>
             <ScrollView>
               <Text style={styles.transcriptText}>
-                {this.props.children}
+                {transcript}
               </Text>
             </ScrollView>
           </View>
         )}
 
-        <NextButton />
+        <NextButton onPress={this.onPress} text='Next'/>
       </View>
     );
   }
@@ -79,6 +82,7 @@ const styles = StyleSheet.create({
   screen: {
     width: width,
     height: height,
+    flex: 1
   },
 
   videoContainer: {
@@ -136,7 +140,7 @@ const styles = StyleSheet.create({
     maxHeight: windowHeight * 0.4,
     paddingVertical: windowHeight * 0.015,
     paddingHorizontal: windowWidth * 0.05,
-    margin: windowWidth * 0.03,
+    marginHorizontal: windowWidth * 0.03,
 
     borderColor: 'black',
     borderRadius: windowWidth * 0.02,
@@ -145,11 +149,7 @@ const styles = StyleSheet.create({
 
   transcriptText: {
     lineHeight: windowHeight * 0.035,
-    fontSize: windowWidth * 0.03,
-  },
-
-  nextButton: {
-    width: windowWidth * 0.3,
+    fontSize: windowWidth * 0.034,
   },
 });
 
