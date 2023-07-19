@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, Dimensions } from 'react-native';
+import { View, StyleSheet, Image, Text, Dimensions, TouchableOpacity } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -9,8 +9,12 @@ function VideoStuff(props) {
   const videoWidth = windowWidth * 0.4;
   const videoHeight = windowHeight * 0.13;
 
+  eventHandler = () => {
+    props.navigation.navigate('Video', {title: props.title, subject:props.subject})
+  }
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={eventHandler} style={styles.container}>
 
       <View style={[styles.video, { width: videoWidth, height: videoHeight }]}>
         <Image
@@ -25,7 +29,7 @@ function VideoStuff(props) {
         <Text style={styles.description} numberOfLines={3} ellipsizeMode="tail">{props.children}</Text>
       </View>
       
-    </View>
+    </TouchableOpacity>
   );
 }
 

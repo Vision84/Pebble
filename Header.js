@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ImageButton from './ImageButton';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions, Image } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
+const Header = ({goBack, navigation}) => {
 
-    this.state = {
-      text: 'Not Pressed',
-    };
-  }
-
-  eventHandler = () => {
-    this.setState({
-      text: 'Pressed',
-    });
+  arrowHandler = () => {
+    navigation.navigate('Home')
   };
 
-  render() {
-    return (
-      <View style={styles.header}>
+  settingsHandler = () => {
+
+  };
+
+  return (
+    <View style={styles.header}>
+      {goBack ? (
         <ImageButton
           style={[styles.arrowImage, { width: windowWidth * 0.08, height: windowWidth * 0.08 }]}
-          onPress={this.eventHandler}
+          onPress={arrowHandler}
           imageSource={require('./assets/arrow.png')}
         />
-        <ImageButton
-          style={[styles.settingsImage, { width: windowWidth * 0.08, height: windowWidth * 0.08 }]}
-          onPress={this.eventHandler}
-          imageSource={require('./assets/settings.png')}
+      ) : (
+        <Image
+          style={[styles.arrowImage, { width: windowWidth * 0.08, height: windowWidth * 0.08 }]}
+          source={require('./assets/icon.png')}
         />
-      </View>
-    );
-  }
+      )}
+      <ImageButton
+        style={[styles.settingsImage, { width: windowWidth * 0.08, height: windowWidth * 0.08 }]}
+        onPress={settingsHandler}
+        imageSource={require('./assets/settings.png')}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -47,10 +47,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: windowWidth * 0.06,
     paddingTop: windowHeight * 0.06,
     resizeMode: 'center',
-  },
-
-  text: {
-    flex: 9,
   },
 
   settingsImage: {

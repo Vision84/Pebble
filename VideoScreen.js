@@ -11,7 +11,7 @@ class VideoScreen extends Component {
     this.toggleTranscript = this.toggleTranscript.bind(this);
 
     this.state = {
-      showTranscript: true,
+      showTranscript: false,
     };
   }
 
@@ -29,9 +29,13 @@ class VideoScreen extends Component {
   };
 
   render() {
+
+    // Access the title and subject parameters from the route object
+    const { title, subject } = this.props.route.params;
+
     return (
       <View style={styles.screen}>
-        <Header />
+        <Header goBack={true} navigation={this.props.navigation}/>
 
         <View style={styles.videoContainer}>
           {/* <Image style={styles.video} source={require('./assets/placeholderthumbnail.jpg')} /> */}
@@ -39,8 +43,8 @@ class VideoScreen extends Component {
 
         <View style={styles.info}>
           <View style={styles.text}>
-            <Text style={styles.title}>Title</Text>
-            <Text style={styles.subject}>Subject</Text>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.subject}>{subject}</Text>
           </View>
           <View style={styles.transcriptButtonContainer}>
             <ImageButton
@@ -55,20 +59,7 @@ class VideoScreen extends Component {
           <View style={styles.transcriptContainer}>
             <ScrollView>
               <Text style={styles.transcriptText}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate, augue ac porttitor commodo,
-                nisi mauris cursus nibh, in accumsan ante sapien vitae diam. Ut fringilla, massa in accumsan fringilla,
-                sem leo condimentum libero, sit amet pellentesque leo tellus et urna. Pellentesque vehicula diam dui, vel
-                aliquam dolor vestibulum in. Vestibulum gravida, augue et cursus porttitor, nulla libero lacinia purus,
-                et aliquam nisi lacus ac dui. Nullam nunc nibh, lacinia gravida enim vitae, bibendum lacinia nunc. Duis
-                vitae mollis elit. Sed eget vehicula nibh, ut fermentum sapien. Ut ut mi non magna pharetra lacinia a vitae
-                ligula. Donec finibus purus vel sem congue fringilla. Pellentesque orci ex, tincidunt eget euismod eget,
-                semper ac lorem. Quisque egestas eros sit amet mollis mollis. Proin malesuada vestibulum nulla, a cursus
-                neque. Quisque fringilla viverra ullamcorper. Etiam sit amet ante ullamcorper, condimentum quam ut,
-                vestibulum eros. Nunc ipsum velit, volutpat id dui eget, dignissim pulvinar tortor. Integer molestie, sem
-                eget ullamcorper commodo, lorem risus auctor nunc, et fringilla justo nunc nec risus. Proin ut pretium
-                ipsum, elementum porta nibh. Pellentesque ac nulla at ipsum aliquet tincidunt ornare fermentum nulla. Donec
-                nec lacinia risus. Vestibulum justo metus, iaculis sed ante in, maximus tincidunt ante. Sed eu arcu ac
-                turpis maximus rhoncus.
+                {this.props.children}
               </Text>
             </ScrollView>
           </View>
@@ -117,13 +108,13 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: windowWidth * 0.07,
+    fontSize: windowWidth * 0.058,
     fontWeight: 'bold',
     
   },
 
   subject: {
-    fontSize: windowWidth * 0.04,
+    fontSize: windowWidth * 0.043,
   },
 
   transcriptButtonContainer: {
