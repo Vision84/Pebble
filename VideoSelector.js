@@ -66,6 +66,7 @@ class VideoSelector extends Component {
                   questions={framework.value.questions.map((q) => q.question)} // Extracting questions from the 'questions' array
                   answers={framework.value.questions.map((q) => q.answers)} // Extracting answers from the 'questions' array
                   correctAnswers={framework.value.questions.map((q) => q.correct)} // Extracting correct answers from the 'questions' array
+                  video={{uri: framework.url}}
                 />
               ))
             )}             

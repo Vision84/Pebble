@@ -24,7 +24,7 @@ class Questions extends Component {
     }
 
     onPress = () => {
-        if (this.state.buttonText === "Check" || this.state.buttonText === "Try Again" ) {
+        if (this.state.buttonText === "Check") {
           // Check if the selected answer is correct
           if (this.props.route.params.correctAnswers[this.state.questionNumber] === this.state.selection) {
             if (this.state.questionNumber + 1 === this.state.numOfQuestions) {
@@ -58,6 +58,11 @@ class Questions extends Component {
         } else if (this.state.buttonText === "Finish") {
           // Finish button pressed on the last question, navigate to Home
           this.props.navigation.navigate("Home");
+        } else {
+          this.setState({
+            selection: 0,
+            buttonText: "Check"
+          })
         }
       };
       
@@ -65,7 +70,8 @@ class Questions extends Component {
         this.state.buttonText != "Next" && (
         this.setState({
             selection: answerChoice,
-            selectionColor: 'rgba(255, 255, 255, 0.3)'
+            selectionColor: 'rgba(255, 255, 255, 0.3)',
+            buttonText: "Check"
         }))
     }
 

@@ -1,78 +1,70 @@
-import React, { Component } from 'react';
+import React, { useState, useRef } from 'react';
 import ImageButton from './ImageButton';
 import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import Header from './Header';
 import NextButton from './NextButton';
+import { ResizeMode, Video } from 'expo-av';
 
-class VideoScreen extends Component {
-  constructor(props) {
-    super(props);
+const VideoScreen = (props) => {
+  const { title, transcript, video } = props.route.params;
 
-    this.toggleTranscript = this.toggleTranscript.bind(this);
+  const [showTranscript, setShowTranscript] = useState(false);
+  const videoRef = useRef(null);
+  const [status, setStatus] = useState({});
 
-    this.state = {
-      showTranscript: false,
-    };
-  }
-
-  getCurrentDimension() {
-    return {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
-  }
-
-  toggleTranscript = () => {
-    this.setState((prevState) => ({
-      showTranscript: !prevState.showTranscript,
-    }));
+  const toggleTranscript = () => {
+    setShowTranscript((prevState) => !prevState);
   };
 
-  onPress = () => {
-    this.props.navigation.navigate("Questions", {questions: this.props.route.params.questions, answers: this.props.route.params.answers, correctAnswers:this.props.route.params.correctAnswers})
-  }
+  const onPress = () => {
+    props.navigation.navigate("Questions", {
+      questions: props.route.params.questions,
+      answers: props.route.params.answers,
+      correctAnswers: props.route.params.correctAnswers,
+    });
+  };
 
-  render() {
+  return (
+    <View style={styles.screen}>
+      <Header goBack={true} navigation={props.navigation} />
 
-    // Access the title and subject parameters from the route object
-    const { title, subject, transcript } = this.props.route.params;
-
-    return (
-      <View style={styles.screen}>
-        <Header goBack={true} navigation={this.props.navigation}/>
-
-        <View style={styles.videoContainer}>
-          {/* <Image style={styles.video} source={require('./assets/placeholderthumbnail.jpg')} /> */}
-        </View>
-
-        <View style={styles.info}>
-          <View style={styles.text}>
-            <Text style={styles.title}>{title}</Text>
-          </View>
-          <View style={styles.transcriptButtonContainer}>
-            <ImageButton
-              style={[styles.transcriptButton, { width: windowWidth * 0.13, height: windowWidth * 0.13 }]}
-              onPress={this.toggleTranscript}
-              imageSource={require('./assets/transcript.png')}
-            />
-          </View>
-        </View>
-
-        {this.state.showTranscript && (
-          <View style={styles.transcriptContainer}>
-            <ScrollView>
-              <Text style={styles.transcriptText}>
-                {transcript}
-              </Text>
-            </ScrollView>
-          </View>
-        )}
-
-        <NextButton onPress={this.onPress} text='Next'/>
+      <View style={styles.videoContainer}>
+        <Video
+          ref={videoRef}
+          style={styles.video}
+          useNativeControls
+          source={video}
+          isLooping={false}
+          onPlaybackStatusUpdate={setStatus}
+          resizeMode={ResizeMode.CONTAIN}
+        />
       </View>
-    );
-  }
-}
+
+      <View style={styles.info}>
+        <View style={styles.text}>
+          <Text style={styles.title}>{title}</Text>
+        </View>
+        <View style={styles.transcriptButtonContainer}>
+          <ImageButton
+            style={[styles.transcriptButton, { width: windowWidth * 0.13, height: windowWidth * 0.13 }]}
+            onPress={toggleTranscript}
+            imageSource={require('./assets/transcript.png')}
+          />
+        </View>
+      </View>
+
+      {showTranscript && (
+        <View style={styles.transcriptContainer}>
+          <ScrollView>
+            <Text style={styles.transcriptText}>{transcript}</Text>
+          </ScrollView>
+        </View>
+      )}
+
+      <NextButton onPress={onPress} text='Next' />
+    </View>
+  );
+};
 
 const { width, height } = Dimensions.get('window');
 const windowWidth = Dimensions.get('window').width;
@@ -86,23 +78,26 @@ const styles = StyleSheet.create({
   },
 
   videoContainer: {
-    height: windowHeight * 0.3,
+    height: windowHeight * 0.29,
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center',
+    marginTop: windowHeight * 0.018,
+    backgroundColor: 'black'
   },
 
   video: {
-    height: windowHeight * 0.28,
-    width: windowWidth * 0.8,
-    resizeMode: 'contain',
+    flex: 1,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: windowWidth,
+    height: windowHeight * 0.261
   },
 
   info: {
     flexDirection: 'row',
-    paddingVertical: windowHeight * 0.015,
     paddingHorizontal: windowWidth * 0.08,
-    marginTop: windowHeight * 0.015,
     height: windowHeight * 0.1,
   },
 

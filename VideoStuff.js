@@ -10,7 +10,7 @@ function VideoStuff(props) {
   const videoHeight = windowHeight * 0.13;
 
   eventHandler = () => {
-    props.navigation.navigate('Video', {title: props.title, transcript: props.transcript, questions: props.questions, answers: props.answers, correctAnswers: props.correctAnswers}) 
+    props.navigation.navigate('Video', {title: props.title, transcript: props.transcript, video: props.video, questions: props.questions, answers: props.answers, correctAnswers: props.correctAnswers}) 
   }
 
   return (
