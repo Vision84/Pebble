@@ -18,7 +18,8 @@ class Questions extends Component {
         buttonText: "Check",
         selection: 0,
         questionNumber: 0,
-        numOfQuestions: this.props.route.params.questions.length, 
+        numOfQuestions: this.props.route.params.questions.length,
+        selectionColor: 'rgba(255, 255, 255, 0.3)'
       }
     }
 
@@ -30,17 +31,20 @@ class Questions extends Component {
               // Last question, set buttonText to "Finish"
               this.setState({
                 buttonText: "Finish",
+                selectionColor: 'rgba(0, 255, 0, 0.3)'
               });
             } else {
               // Not the last question, set buttonText to "Next"
               this.setState({
                 buttonText: "Next",
+                selectionColor: 'rgba(0, 255, 0, 0.3)'
               });
             }
           } else {
             // Wrong answer, set buttonText to "Try Again"
             this.setState({
               buttonText: "Try Again",
+              selectionColor: 'rgba(255, 0, 0, 0.3)'
             });
           }
         } else if (this.state.buttonText === "Next") {
@@ -49,6 +53,7 @@ class Questions extends Component {
             questionNumber: prevState.questionNumber + 1,
             selection: 0,
             buttonText: "Check",
+            selectionColor: 'rgba(255, 255, 255, 0.3)'
           }));
         } else if (this.state.buttonText === "Finish") {
           // Finish button pressed on the last question, navigate to Home
@@ -59,13 +64,19 @@ class Questions extends Component {
     selectAnswer(answerChoice){
         this.state.buttonText != "Next" && (
         this.setState({
-            selection: answerChoice
+            selection: answerChoice,
+            selectionColor: 'rgba(255, 255, 255, 0.3)'
         }))
     }
 
     render() {
 
         const {questions, answers} = this.props.route.params
+
+        const selectedAnswer = {
+          backgroundColor: this.state.selectionColor,
+          overflow: 'hidden',
+        };
 
         return (
         <View style={styles.container}>
@@ -81,16 +92,16 @@ class Questions extends Component {
                         <Text style={styles.questionText}>{this.state.questionNumber + 1}. {questions[this.state.questionNumber]}</Text>
                     </View>
                     <View style={styles.answers}>
-                        <TouchableOpacity style={styles.answer} onPress={() => this.selectAnswer(1)}>
+                        <TouchableOpacity style={[styles.answer, this.state.selection == 1 && selectedAnswer]} onPress={() => this.selectAnswer(1)}>
                             <Text style={styles.answerText}>{answers[this.state.questionNumber][0]}</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.answer} onPress={() => this.selectAnswer(2)}>
+                        <TouchableOpacity style={[styles.answer, this.state.selection == 2 && selectedAnswer]} onPress={() => this.selectAnswer(2)}>
                             <Text style={styles.answerText}>{answers[this.state.questionNumber][1]}</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.answer} onPress={() => this.selectAnswer(3)}>
+                        <TouchableOpacity style={[styles.answer, this.state.selection == 3 && selectedAnswer]} onPress={() => this.selectAnswer(3)}>
                             <Text style={styles.answerText}>{answers[this.state.questionNumber][2]}</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.answer} onPress={() => this.selectAnswer(4)}>
+                        <TouchableOpacity style={[styles.answer, this.state.selection == 4 && selectedAnswer]} onPress={() => this.selectAnswer(4)}>
                             <Text style={styles.answerText}>{answers[this.state.questionNumber][3]}</Text>
                         </TouchableOpacity>
                               
@@ -155,9 +166,11 @@ const styles = StyleSheet.create({
         paddingLeft: windowWidth * 0.2,
         marginVertical: windowHeight * 0.01,
         borderColor: 'black',
-        borderRadius: 8,
-        borderWidth: windowWidth * 0.0003,
+        borderRadius: 15,
+        borderWidth: windowWidth * 0.003,
         justifyContent: 'center',
+        overflow: 'hidden',
+        backgroundColor: 'transparent'
     },
 
     answerText: {
