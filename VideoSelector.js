@@ -3,18 +3,31 @@ import Header from './Header';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Image, View, TextInput, StyleSheet, Dimensions, ScrollView, Text } from 'react-native';
 import VideoStuff from './VideoStuff';
-import videoData from './latest.json'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+const API_URL = 'http://vision84.pythonanywhere.com/api/v1/resources/content/latest';
 
 class VideoSelector extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      search: ''
+      search: '',
+      videoData: [],
     };
+  }
+
+  componentDidMount() {
+    // Fetch data from the API and update the state with the fetched data
+    fetch(API_URL)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ videoData: data.frameworks });
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
   }
 
   searchChange(text) {
@@ -24,12 +37,12 @@ class VideoSelector extends Component {
   }
 
   render() {
-    const { search } = this.state;
-    const frameworks = videoData.frameworks;
+    const { search, videoData } = this.state;
+    //const frameworks = videoData.frameworks;
 
     // Filter the frameworks based on the search term
-    const filteredFrameworks = frameworks.filter((framework) =>
-      (framework.title.toLowerCase().includes(search.toLowerCase()))
+    const filteredFrameworks = videoData.filter(  
+      (framework) => framework.title.toLowerCase().includes(search.toLowerCase())
     );
     
     return (
