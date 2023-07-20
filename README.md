@@ -58,6 +58,9 @@ The backend is a simple Flask application acting as an API. The frontend makes A
 Throughout development of Pebble, we encountered several challenges that forced us to think outside the box to complete the task.
 
 ### Design
+After some contemplation about the name of the app, we chose "Pebble" as it symbolized a simple object, a simplification of something much more complex, which is fundamentally what our app is. After designing the logo, keeping the same simple design by presenting a P with a blank background, we then started the app design. 
+To design each page of the app, we used a software called Figma which allowed us to manually visualize the elements of each page. We decided to keep a light blue background color, as it symbolizes the underlying purpose of the app (light blue is the symbolic color of autism awareness). 
+For the display of the videos, we chose a scrolling design as it makes 
 
 ### React Native
 Making UX and UI that worked well for the users and the backend led to several challenges:
