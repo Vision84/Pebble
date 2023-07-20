@@ -87,10 +87,10 @@ class Questions extends Component {
         return (
         <View style={styles.container}>
             <LinearGradient
-            colors={['#E3B9DC', '#B3C1E3', '#7BCAEA', '#38D5F3', '#01DEFB']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.gradient}
+              colors={['#E2F4FF', '#B6E3FE']}
+              start={{ x: 0.5, y: 0 }}
+              end={{ x: 0.5, y: 1 }}
+              style={styles.gradient}
             >
                 <Header goBack={true} navigation={this.props.navigation}/>
                 <View style={styles.form}>
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     },
 
     answerText: {
-        fontSize: windowWidth * 0.04
+        fontSize: windowWidth * 0.035
     }
 
 

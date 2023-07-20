@@ -38,7 +38,6 @@ class VideoSelector extends Component {
 
   render() {
     const { search, videoData } = this.state;
-    //const frameworks = videoData.frameworks;
 
     // Filter the frameworks based on the search term
     const filteredFrameworks = videoData.filter(  
@@ -48,9 +47,9 @@ class VideoSelector extends Component {
     return (
       <View style={styles.container}>
         <LinearGradient
-          colors={['#E3B9DC', '#B3C1E3', '#7BCAEA', '#38D5F3', '#01DEFB']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
+          colors={['#E2F4FF', '#B6E3FE']}
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 0.5, y: 1 }}
           style={styles.gradient}
         >
           <Header goBack={false} />
