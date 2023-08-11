@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header, VideoStuff, Footer, Titles, CourseRow } from '../components' 
-import { View, StyleSheet, Dimensions, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Dimensions, Text, TouchableOpacity, ScrollView } from 'react-native';
 import data from '../latest.json';
 
 const windowWidth = Dimensions.get('window').width;
@@ -62,12 +62,14 @@ const Home = (props: HomeProps) => {
             </TouchableOpacity>
             
         </View>
-
-        <CourseRow text='Math' />
-        <CourseRow text='Math' />
-        <CourseRow text='Math' />
-        <CourseRow text='Math' />
-        <CourseRow text='Math' />        
+         
+        <ScrollView style={styles.scroll}>
+            <CourseRow current="Home" text='Math' navigation={props.navigation} />
+            <CourseRow current="Home" text='Math' navigation={props.navigation} />
+            <CourseRow current="Home" text='Math' navigation={props.navigation} />
+            <CourseRow current="Home" text='Math' navigation={props.navigation} />
+            <CourseRow current="Home" text='Math' navigation={props.navigation} /> 
+        </ScrollView>
 
         <Footer selected="home" navigation={props.navigation}/>
     </View>
@@ -79,10 +81,14 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white'
     },
+
+    scroll: {
+        marginBottom: '22%',
+    },
     
     videoContainer: {
         marginBottom: windowHeight * 0.023,
-        maxHeight: '32%',
+        // maxHeight: '32%',
         overflow: 'hidden'
     },
 

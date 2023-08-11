@@ -20,9 +20,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     alignItems: 'flex-start',
-    justifyContent: 'flex-end', // Align items to the bottom of the container
-    height: windowHeight * 0.03,
     paddingHorizontal: windowWidth * 20 / 390,
+    height: windowHeight * 0.04
   },
 
   text: {

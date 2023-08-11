@@ -13,21 +13,21 @@ const Courses = (props: CoursesProps) => {
             <Header/>
             <Titles text="Courses" />
             <ScrollView style={styles.scroll}>
-                <CourseRow text='Math' />
-                <CourseRow text='Math' />
-                <CourseRow text='Math' />
-                <CourseRow text='Math' />
-                <CourseRow text='Math' /> 
-                <CourseRow text='Math' />
-                <CourseRow text='Math' />
-                <CourseRow text='Math' />
-                <CourseRow text='Math' />
-                <CourseRow text='Math' /> 
-                <CourseRow text='Math' />
-                <CourseRow text='Math' />
-                <CourseRow text='Math' />
-                <CourseRow text='Math' />
-                <CourseRow text='Math' /> 
+                <CourseRow current="Courses" text='Science' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
+                <CourseRow current="Courses" text='Math' navigation={props.navigation} />
             </ScrollView>
 
             <Footer selected="courses" navigation={props.navigation}/>

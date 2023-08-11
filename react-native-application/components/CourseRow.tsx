@@ -6,14 +6,16 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 type CourseRowProps = {
-    text: string
+    text: string,
+    navigation: any,
+    current: string
 }
 
 
 const CourseRow = (props: CourseRowProps) => {
 
     const eventHandler = () => {
-
+        props.navigation.navigate("Course Page", {title: props.text, current: props.current})
     }
 
     return (
