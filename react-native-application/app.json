@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "PebbleProj",
-    "slug": "PebbleProj",
-    "version": "1.0.0",
+    "name": "Pebble",
+    "slug": "Pebble",
+    "version": "2.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon.jpg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splashscreen.png",
+      "image": "./assets/splashscreen.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

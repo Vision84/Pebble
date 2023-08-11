@@ -1,15 +1,30 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Dimensions, Text, TouchableOpacity} from 'react-native'
-import Header from './Header';
-import { LinearGradient } from 'expo-linear-gradient';
-import NextButton from './NextButton';
+import { View, StyleSheet, Dimensions, Text, TouchableOpacity, ViewStyle} from 'react-native'
+import { Header, NextButton } from '../components';
+import { LinearGradient } from 'expo-linear-gradient'; 
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-class Questions extends Component {
+type QuestionsProps = 
+{
+    route: any,
+    navigation: any
+};
 
-    constructor(props) {
+type QuestionsState =
+{
+    buttonText: string,
+    selection: number,
+    questionNumber: number,
+    numOfQuestions: number,
+    selectionColor: string
+};
+
+class Questions extends Component<QuestionsProps, QuestionsState> {
+
+    constructor(props: QuestionsProps) {
       super(props)
 
       this.onPress = this.onPress.bind(this)
@@ -66,7 +81,7 @@ class Questions extends Component {
         }
       };
       
-    selectAnswer(answerChoice){
+    selectAnswer(answerChoice: number){
         this.state.buttonText != "Next" && (
         this.setState({
             selection: answerChoice,
@@ -79,9 +94,9 @@ class Questions extends Component {
 
         const {questions, answers} = this.props.route.params
 
-        const selectedAnswer = {
-          backgroundColor: this.state.selectionColor,
-          overflow: 'hidden',
+        const selectedAnswer: ViewStyle = {
+            backgroundColor: this.state.selectionColor,
+            overflow: 'hidden',
         };
 
         return (
@@ -92,7 +107,7 @@ class Questions extends Component {
               end={{ x: 0.5, y: 1 }}
               style={styles.gradient}
             >
-                <Header goBack={true} navigation={this.props.navigation}/>
+                <Header navigation={this.props.navigation}/>
                 <View style={styles.form}>
                     <View style={styles.question}>
                         <Text style={styles.questionText}>{this.state.questionNumber + 1}. {questions[this.state.questionNumber]}</Text>

@@ -1,11 +1,15 @@
 import React, { useState, useRef } from 'react';
-import ImageButton from './ImageButton';
 import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
-import Header from './Header';
-import NextButton from './NextButton';
+import { Header, NextButton, ImageButton } from '../components';
 import { ResizeMode, Video } from 'expo-av';
 
-const VideoScreen = (props) => {
+type VideoScreenProps =
+{
+    route: any;
+    navigation: any;    
+}
+
+const VideoScreen = (props: VideoScreenProps) => {
   const { title, transcript, video } = props.route.params;
 
   const [showTranscript, setShowTranscript] = useState(false);
@@ -26,7 +30,7 @@ const VideoScreen = (props) => {
 
   return (
     <View style={styles.screen}>
-      <Header goBack={true} navigation={props.navigation} />
+      <Header navigation={props.navigation} />
 
       <View style={styles.videoContainer}>
         <Video
@@ -48,7 +52,7 @@ const VideoScreen = (props) => {
           <ImageButton
             style={[styles.transcriptButton, { width: windowWidth * 0.13, height: windowWidth * 0.13 }]}
             onPress={toggleTranscript}
-            imageSource={require('./assets/transcript.png')}
+            imageSource={require('../assets/transcript.png')}
           />
         </View>
       </View>

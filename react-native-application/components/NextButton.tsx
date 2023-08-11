@@ -1,14 +1,21 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 
-const NextButton = ({ onPress, text }) => {
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text style={styles.buttonText}>{text}</Text>
-      </TouchableOpacity>
-    </View>
-  );
+type NextButtonProps =
+{
+    onPress: any,
+    text: string
+}
+
+const NextButton = (props: NextButtonProps) => {
+
+    return (
+        <View style={styles.container}>
+        <TouchableOpacity style={styles.button} onPress={props.onPress}>
+            <Text style={styles.buttonText}>{props.text}</Text>
+        </TouchableOpacity>
+        </View>
+    );
 };
 
 const windowWidth = Dimensions.get('window').width;
