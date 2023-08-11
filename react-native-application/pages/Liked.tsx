@@ -92,13 +92,9 @@ class Liked extends Component<LikedProps, LikedState> {
       flex: 1,
       backgroundColor: 'white'
     },
-  
-    gradient: {
-      ...StyleSheet.absoluteFillObject, // This makes the LinearGradient fill the entire screen
-    },
     
     scroll: {
-      marginBottom: '22%'
+      marginBottom: '22%',
     },
   
     videoList: {

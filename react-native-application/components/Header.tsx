@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: windowWidth * 20/390,
     alignItems: 'flex-end',
-    marginBottom: windowWidth * 0.05,
+    marginBottom: windowHeight * 0.023,
 
   },
 

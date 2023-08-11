@@ -5,5 +5,6 @@ import VideoStuff from "./VideoStuff";
 import NextButton from "./NextButton";
 import Search from "./Search";
 import Titles from "./Titles";
+import CourseRow from "./CourseRow";
 
-export {ImageButton, Header, Footer, VideoStuff, NextButton, Search, Titles}
+export {ImageButton, Header, Footer, VideoStuff, NextButton, Search, Titles, CourseRow}
