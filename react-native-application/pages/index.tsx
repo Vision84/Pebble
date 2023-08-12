@@ -5,5 +5,7 @@ import Liked from "./Liked";
 import Courses from "./Courses";
 import Home from "./Home";
 import CoursePage from "./CoursePage";
+import LogIn from "./LogIn";
+import SignUp from "./SignUp";
 
-export {Explore, VideoScreen, Questions, Liked, Courses, Home, CoursePage}
+export {Explore, VideoScreen, Questions, Liked, Courses, Home, CoursePage, LogIn, SignUp}

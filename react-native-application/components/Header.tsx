@@ -15,7 +15,7 @@ const Header = (props: HeaderProps) => {
 //{goBack, navigation}
 
   const accountHandler = () => {
-    // props.navigation.navigate('Explore')
+    props.navigation.navigate('LogIn')
   };
 
   const settingsHandler = () => {

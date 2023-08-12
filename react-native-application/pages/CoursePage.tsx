@@ -42,7 +42,7 @@ const CoursePage = (props: CoursePageProps) => {
                 <Text style={styles.headerText}>{props.route.params.title}</Text>
             </View>
 
-            <ScrollView style={styles.scroll}>
+            <ScrollView>
             <Titles text="Section 1"/>
 
             <View style={styles.videoList}>
@@ -80,6 +80,7 @@ header: {
     backgroundColor: '#0069fb',
     flexDirection: 'row',
     paddingHorizontal: windowWidth * 20/390,
+    paddingTop: windowHeight * 0.04,
     alignItems: 'center',
     marginBottom: windowHeight * 0.023,
 },
@@ -95,9 +96,9 @@ headerText: {
     fontWeight: 'bold'
 },
 
-scroll: {
-    marginBottom: '22%',
-},
+// scroll: {
+//     marginBottom: '22%',
+// },
 
 videoList: {
     // Remove padding to fill the whole screen
