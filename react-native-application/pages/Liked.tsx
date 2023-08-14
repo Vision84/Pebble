@@ -53,7 +53,7 @@ class Liked extends Component<LikedProps, LikedState> {
       
       return (
         <View style={styles.container}>
-          <Header navigation={this.props.navigation} />
+          <Header goBack={false} navigation={this.props.navigation} />
           {/* <Search onChange={(text: string) => this.searchChange(text)}/> */}
           <Titles text="Liked Videos"/>
 

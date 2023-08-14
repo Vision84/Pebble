@@ -1,14 +1,15 @@
 import React from 'react';
 import ImageButton from './ImageButton';
 import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons, MaterialIcons, AntDesign } from '@expo/vector-icons'; 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 type HeaderProps = 
 {
-    navigation?:any;
+    goBack: boolean
+    navigation:any;
 }
 
 const Header = (props: HeaderProps) => {
@@ -19,17 +20,25 @@ const Header = (props: HeaderProps) => {
   };
 
   const settingsHandler = () => {
+    props.navigation.navigate("Settings")
+  };  
 
+  const closeHandler = () => {
+    props.navigation.navigate('Home')
   };
 
-  const iconSize: number = windowWidth * 0.11
+  const iconSize: number = windowWidth * 0.1
 
   return (
     <View style={styles.header}>
-
+      {!props.goBack ?
       <TouchableOpacity onPress={accountHandler} style={styles.account}>
         <MaterialCommunityIcons name="account-circle-outline" size={iconSize} color="black" />
-      </TouchableOpacity>
+      </TouchableOpacity>:
+
+      <TouchableOpacity style={styles.account} onPress={closeHandler}>
+        <AntDesign name="close" size={windowWidth * 0.1} color="black" />
+      </TouchableOpacity>}
 
       <View style={styles.logo}>
         <Image style={styles.logoImage} source={require('../assets/pebbleFull.png')}></Image>
@@ -49,7 +58,6 @@ const styles = StyleSheet.create({
     height: windowHeight * 0.15,
     backgroundColor: 'transparent',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     paddingHorizontal: windowWidth * 20/390,
     alignItems: 'flex-end',
     marginBottom: windowHeight * 0.023,

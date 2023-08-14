@@ -50,7 +50,7 @@ function VideoStuff(props: VideoStuffProps) {
 
       <TouchableOpacity onPress={likeHandler} style={styles.heart}>
         {likeState ?
-        <AntDesign name="hearto" size={iconsSize} color="blue" />
+        <AntDesign name="heart" size={iconsSize} color="blue" />
         :
         <AntDesign name="hearto" size={iconsSize} color="black" />
         }

@@ -7,5 +7,6 @@ import Home from "./Home";
 import CoursePage from "./CoursePage";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
+import Settings from "./Settings";
 
-export {Explore, VideoScreen, Questions, Liked, Courses, Home, CoursePage, LogIn, SignUp}
+export {Explore, VideoScreen, Questions, Liked, Courses, Home, CoursePage, LogIn, SignUp, Settings}

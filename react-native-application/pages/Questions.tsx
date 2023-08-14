@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Dimensions, Text, TouchableOpacity, ViewStyle} from 'react-native'
 import { Header, NextButton } from '../components';
-import { LinearGradient } from 'expo-linear-gradient'; 
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -24,117 +23,107 @@ type QuestionsState =
 
 class Questions extends Component<QuestionsProps, QuestionsState> {
 
-    constructor(props: QuestionsProps) {
-      super(props)
+  constructor(props: QuestionsProps) {
+    super(props)
 
-      this.onPress = this.onPress.bind(this)
-    
-      this.state = {
-        buttonText: "Check",
-        selection: 0,
-        questionNumber: 0,
-        numOfQuestions: this.props.route.params.questions.length,
-        selectionColor: 'rgba(255, 255, 255, 0.3)'
-      }
+    this.onPress = this.onPress.bind(this)
+  
+    this.state = {
+      buttonText: "Check",
+      selection: 0,
+      questionNumber: 0,
+      numOfQuestions: this.props.route.params.questions.length,
+      selectionColor: 'rgba(255, 255, 255, 0.3)'
     }
+  }
 
-    onPress = () => {
-        if (this.state.buttonText === "Check") {
-          // Check if the selected answer is correct
-          if (this.props.route.params.correctAnswers[this.state.questionNumber] === this.state.selection) {
-            if (this.state.questionNumber + 1 === this.state.numOfQuestions) {
-              // Last question, set buttonText to "Finish"
-              this.setState({
-                buttonText: "Finish",
-                selectionColor: 'rgba(0, 255, 0, 0.3)'
-              });
-            } else {
-              // Not the last question, set buttonText to "Next"
-              this.setState({
-                buttonText: "Next",
-                selectionColor: 'rgba(0, 255, 0, 0.3)'
-              });
-            }
-          } else {
-            // Wrong answer, set buttonText to "Try Again"
-            this.setState({
-              buttonText: "Try Again",
-              selectionColor: 'rgba(255, 0, 0, 0.3)'
-            });
-          }
-        } else if (this.state.buttonText === "Next") {
-          // Proceed to the next question
-          this.setState((prevState) => ({
-            questionNumber: prevState.questionNumber + 1,
-            selection: 0,
-            buttonText: "Check",
-            selectionColor: 'rgba(255, 255, 255, 0.3)'
-          }));
-        } else if (this.state.buttonText === "Finish") {
-          // Finish button pressed on the last question, navigate to Home
-          this.props.navigation.navigate("Home");
-        } else {
+  onPress = () => {
+    if (this.state.buttonText === "Check") {
+      // Check if the selected answer is correct
+      if (this.props.route.params.correctAnswers[this.state.questionNumber] === this.state.selection) {
+        if (this.state.questionNumber + 1 === this.state.numOfQuestions) {
+          // Last question, set buttonText to "Finish"
           this.setState({
-            selection: 0,
-            buttonText: "Check"
-          })
+            buttonText: "Finish",
+            selectionColor: 'rgba(0, 255, 0, 0.3)'
+          });
+        } else {
+          // Not the last question, set buttonText to "Next"
+          this.setState({
+            buttonText: "Next",
+            selectionColor: 'rgba(0, 255, 0, 0.3)'
+          });
         }
-      };
-      
-    selectAnswer(answerChoice: number){
-        this.state.buttonText != "Next" && (
+      } else {
+        // Wrong answer, set buttonText to "Try Again"
         this.setState({
-            selection: answerChoice,
-            selectionColor: 'rgba(255, 255, 255, 0.3)',
-            buttonText: "Check"
-        }))
+          buttonText: "Try Again",
+          selectionColor: 'rgba(255, 0, 0, 0.3)'
+        });
+      }
+    } else if (this.state.buttonText === "Next") {
+      // Proceed to the next question
+      this.setState((prevState) => ({
+        questionNumber: prevState.questionNumber + 1,
+        selection: 0,
+        buttonText: "Check",
+        selectionColor: 'rgba(255, 255, 255, 0.3)'
+      }));
+    } else if (this.state.buttonText === "Finish") {
+      // Finish button pressed on the last question, navigate to Home
+      this.props.navigation.navigate("Home");
+    } else {
+      this.setState({
+        selection: 0,
+        buttonText: "Check"
+      })
     }
+  };
+    
+  selectAnswer(answerChoice: number){
+    this.state.buttonText != "Next" && (
+    this.setState({
+      selection: answerChoice,
+      selectionColor: 'rgba(255, 255, 255, 0.3)',
+      buttonText: "Check"
+    }))
+  }
 
-    render() {
+  render() {
+    const {questions, answers} = this.props.route.params
 
-        const {questions, answers} = this.props.route.params
+    const selectedAnswer: ViewStyle = {
+      backgroundColor: this.state.selectionColor,
+      overflow: 'hidden',
+    };
 
-        const selectedAnswer: ViewStyle = {
-            backgroundColor: this.state.selectionColor,
-            overflow: 'hidden',
-        };
+    return (
+      <View style={styles.container}>
 
-        return (
-        <View style={styles.container}>
-            <LinearGradient
-              colors={['#E2F4FF', '#B6E3FE']}
-              start={{ x: 0.5, y: 0 }}
-              end={{ x: 0.5, y: 1 }}
-              style={styles.gradient}
-            >
-                <Header navigation={this.props.navigation}/>
-                <View style={styles.form}>
-                    <View style={styles.question}>
-                        <Text style={styles.questionText}>{this.state.questionNumber + 1}. {questions[this.state.questionNumber]}</Text>
-                    </View>
-                    <View style={styles.answers}>
-                        <TouchableOpacity style={[styles.answer, this.state.selection == 1 && selectedAnswer]} onPress={() => this.selectAnswer(1)}>
-                            <Text style={styles.answerText}>{answers[this.state.questionNumber][0]}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={[styles.answer, this.state.selection == 2 && selectedAnswer]} onPress={() => this.selectAnswer(2)}>
-                            <Text style={styles.answerText}>{answers[this.state.questionNumber][1]}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={[styles.answer, this.state.selection == 3 && selectedAnswer]} onPress={() => this.selectAnswer(3)}>
-                            <Text style={styles.answerText}>{answers[this.state.questionNumber][2]}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={[styles.answer, this.state.selection == 4 && selectedAnswer]} onPress={() => this.selectAnswer(4)}>
-                            <Text style={styles.answerText}>{answers[this.state.questionNumber][3]}</Text>
-                        </TouchableOpacity>
-                              
-                    </View>
-                </View>
-
-            </LinearGradient>
-
-            <NextButton onPress={this.onPress} text={this.state.buttonText}/>
+        <Header goBack={true} navigation={this.props.navigation}/>
+        <View style={styles.form}>
+          <View style={styles.question}>
+            <Text style={styles.questionText}>{this.state.questionNumber + 1}. {questions[this.state.questionNumber]}</Text>
+          </View>
+          <View style={styles.answers}>
+              <TouchableOpacity style={[styles.answer, this.state.selection == 1 && selectedAnswer]} onPress={() => this.selectAnswer(1)}>
+                <Text style={styles.answerText}>{answers[this.state.questionNumber][0]}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.answer, this.state.selection == 2 && selectedAnswer]} onPress={() => this.selectAnswer(2)}>
+                <Text style={styles.answerText}>{answers[this.state.questionNumber][1]}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.answer, this.state.selection == 3 && selectedAnswer]} onPress={() => this.selectAnswer(3)}>
+                <Text style={styles.answerText}>{answers[this.state.questionNumber][2]}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.answer, this.state.selection == 4 && selectedAnswer]} onPress={() => this.selectAnswer(4)}>
+                <Text style={styles.answerText}>{answers[this.state.questionNumber][3]}</Text>
+              </TouchableOpacity>       
+          </View>
         </View>
-        )
-    }
+        <NextButton onPress={this.onPress} text={this.state.buttonText}/>
+      </View>
+    )
+  }
 }
 
 export default Questions

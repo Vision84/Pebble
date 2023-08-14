@@ -30,7 +30,7 @@ const VideoScreen = (props: VideoScreenProps) => {
 
   return (
     <View style={styles.screen}>
-      <Header navigation={props.navigation} />
+      <Header goBack={true} navigation={props.navigation} />
 
       <View style={styles.videoContainer}>
         <Video

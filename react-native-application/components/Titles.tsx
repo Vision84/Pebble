@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     paddingHorizontal: windowWidth * 20 / 390,
-    height: windowHeight * 0.04
+    height: windowHeight * 0.04,
+    marginBottom: windowHeight * 0.01
   },
 
   text: {

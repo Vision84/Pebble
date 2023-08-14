@@ -53,7 +53,7 @@ class Explore extends Component<ExploreProps, ExploreState> {
       
       return (
         <View style={styles.container}>
-          <Header navigation={this.props.navigation} />
+          <Header goBack={false} navigation={this.props.navigation} />
           <Search onChange={(text: string) => this.searchChange(text)}/>
 
           <ScrollView style={styles.scroll}>

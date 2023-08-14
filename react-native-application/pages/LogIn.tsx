@@ -77,12 +77,11 @@ const styles = StyleSheet.create({
       paddingHorizontal: windowWidth * 20/390,
       paddingTop: windowHeight * 0.04,
       alignItems: 'center',
-      // marginBottom: windowHeight * 0.023,
   },
 
   headerIcon: {
     flex: 2,
-    alignItems: 'center'
+    alignItems: 'flex-start'
   },
 
   headerTextContainer: {

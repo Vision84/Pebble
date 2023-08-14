@@ -32,13 +32,13 @@ const Home = (props: HomeProps) => {
 
     return (
     <View style={styles.container}>
-        <Header navigation={props.navigation} />
+        <Header goBack={false} navigation={props.navigation} />
 
         <Titles text="Continue Watching"/>
         <View style={styles.videoContainer}>
             <View style={styles.videoList}>
                 {
-                    data.frameworks.slice(0, 3).map((framework: any) => (
+                    data.frameworks.slice(0, 1).map((framework: any) => (
                         <VideoStuff
                         key={framework.id}
                         navigation={props.navigation}
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     editContainer: {
         flex: 1,
         alignItems: 'flex-end',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-start'
     },
 
     editText: {

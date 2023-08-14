@@ -6,5 +6,6 @@ import NextButton from "./NextButton";
 import Search from "./Search";
 import Titles from "./Titles";
 import CourseRow from "./CourseRow";
+import CoursePanel from "./CoursePanel";
 
-export {ImageButton, Header, Footer, VideoStuff, NextButton, Search, Titles, CourseRow}
+export {ImageButton, Header, Footer, VideoStuff, NextButton, Search, Titles, CourseRow, CoursePanel}

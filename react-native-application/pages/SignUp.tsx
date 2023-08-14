@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
   headerIcon: {
     flex: 2,
-    alignItems: 'center'
+    alignItems: 'flex-start'
   },
 
   headerTextContainer: {

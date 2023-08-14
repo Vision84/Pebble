@@ -24,7 +24,7 @@ const Footer = (props: FooterProps) => {
   //   pressed = iconNumber
   // };
 
-  const iconsSize: number = windowWidth * 0.1
+  const iconsSize: number = windowWidth * 0.086
   
 
   return (
@@ -49,7 +49,7 @@ const Footer = (props: FooterProps) => {
       </TouchableOpacity>
       <TouchableOpacity onPress={() => iconHandler("Liked")} style={styles.buttonContainer}>
         {props.selected == "liked" ?
-        <AntDesign name="hearto" size={iconsSize} color="blue" />:
+        <AntDesign name="heart" size={iconsSize} color="blue" />:
         <AntDesign name="hearto" size={iconsSize} color="black" />}
         <Text style={styles.buttonText}>Liked</Text>
       </TouchableOpacity>
@@ -66,12 +66,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     position: 'absolute', // Position the footer absolutely
     bottom: 0, // Align it to the bottom of the screen
-    width: '98%', // Take up the entire width
-    borderTopRightRadius: 40,
-    borderTopLeftRadius: 40,
+    width: '100%', // Take up the entire width
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
     flexDirection: 'row',
     paddingHorizontal: windowWidth * 45/390,
-    gap: windowWidth * 0.025,
+    gap: windowWidth * 0.04,
   },
 
   text: {
