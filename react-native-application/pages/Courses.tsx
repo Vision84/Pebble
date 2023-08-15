@@ -14,7 +14,7 @@ const Courses = (props: CoursesProps) => {
     return(
         <View style={styles.container}>
             <Header goBack={false} navigation={props.navigation}/>
-            <Titles text="Courses" />
+            
             <ScrollView style={styles.scroll}>
                 <View style={styles.panelRow}>
                     <CoursePanel current="Courses" text="Science" navigation={props.navigation} />
@@ -32,8 +32,8 @@ const Courses = (props: CoursesProps) => {
                     <CoursePanel current="Courses" text="Science" navigation={props.navigation} />
                     <CoursePanel current="Courses" text="Science" navigation={props.navigation} />
                 </View>
-                
-                {/* <CourseRow current="Courses" text='Science' navigation={props.navigation} />
+                {/* <Titles text="Courses" />
+                <CourseRow current="Courses" text='Science' navigation={props.navigation} />
                 <CourseRow current="Courses" text='Math' navigation={props.navigation} />
                 <CourseRow current="Courses" text='Math' navigation={props.navigation} />
                 <CourseRow current="Courses" text='Math' navigation={props.navigation} />
@@ -67,10 +67,10 @@ const styles = StyleSheet.create({
     },
 
     panelRow: {
-        paddingHorizontal: windowWidth * 50/390,
+        paddingHorizontal: windowWidth * 20/390,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: windowHeight * 0.015
+        marginBottom: windowHeight * 0.023,
     },
 })
 export default Courses

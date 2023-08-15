@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingHorizontal: windowWidth * 20 / 390,
     height: windowHeight * 0.04,
-    marginBottom: windowHeight * 0.01
+    marginBottom: windowHeight * 0.005
   },
 
   text: {

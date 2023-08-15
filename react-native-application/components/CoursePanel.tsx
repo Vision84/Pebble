@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native'
-import { FontAwesome, AntDesign } from '@expo/vector-icons' 
+import { AntDesign } from '@expo/vector-icons' 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -19,29 +19,33 @@ const CoursePanel = (props: CoursePanelProps) => {
     }
 
     return (
-        <TouchableOpacity onPress={eventHandler} style={styles.container}>
-            <View style={styles.image}>
-                <AntDesign name="barschart" size={windowWidth * 0.20} color="black" />
-            </View>
-            <View style={styles.textContainer}>
-                <Text style={styles.text}>{props.text}</Text>
-            </View>        
-        </TouchableOpacity>
+        <View style={styles.container}>
+            <TouchableOpacity onPress={eventHandler}>
+                <View style={styles.image}>
+                    <AntDesign name="barschart" size={windowWidth * 0.20} color="black" />
+                </View>
+                <View style={styles.textContainer}>
+                    <Text style={styles.text}>{props.text}</Text>
+                </View>        
+            </TouchableOpacity>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
+       container: {
         padding: windowWidth * 10/390,
-        height: windowHeight * 0.19,
-        width: windowWidth * 140/390,
+        height: windowWidth * 165/390,
+        width: windowWidth * 165/390,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
         borderColor: 'rgba(0, 0, 0, 0.14)',
         borderWidth: windowWidth * 0.003,
-        borderRadius: 50,
-        
+        borderRadius: 40,
+        elevation: 6,
+        shadowColor: 'black',
+        backgroundColor: 'white'
     },
     
     image: {
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '80%',
-        resizeMode: 'center'
+        resizeMode: 'center',
     },
 
     textContainer: {
@@ -66,3 +70,44 @@ const styles = StyleSheet.create({
 })
 
 export default CoursePanel
+
+// import React from "react"
+// import {View, Text, StyleSheet} from 'react-native'
+
+// const boxShadow = () => {
+//     return(
+//         <View style={[styles.card, styles.elevation]}>
+//             <View>
+//             <Text style={styles.heading}>
+//                 React Native Box Shadow (Elevation)
+//             </Text>
+//             </View>
+//             <Text>
+//             Using the elevation style prop to apply box-shadow for Android devices
+//             </Text>
+//         </View>
+//     )
+// }
+
+// const styles = StyleSheet.create({
+//     heading: {
+//       fontSize: 18,
+//       fontWeight: '600',
+//       marginBottom: 13,
+//     },
+//     card: {
+//       backgroundColor: 'white',
+//       borderRadius: 8,
+//       paddingVertical: 45,
+//       paddingHorizontal: 25,
+//       width: '100%',
+//       margin: 10,
+//       elevation: 20,
+//       shadowColor: '#52006A',
+//     },
+//     elevation: {
+      
+//     },
+//   });
+
+// export default boxShadow;
