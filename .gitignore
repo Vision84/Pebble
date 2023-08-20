@@ -303,6 +303,8 @@ package-lock.json
 .vscode
 .vs
 
+.db
+
 # Android memory profiler files
 *.hprof
 
