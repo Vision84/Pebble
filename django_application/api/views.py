@@ -11,7 +11,7 @@ def index(request):
     return HttpResponse("<h1>Index</h1>")
 
 @csrf_exempt
-def createUser(request):
+def apiCreateUser(request):
     if request.method == "POST":
         body = json.loads(request.body.decode('utf-8'))
         uid = body.get("uid")

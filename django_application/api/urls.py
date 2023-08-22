@@ -7,5 +7,5 @@ urlpatterns = [
 
     #api routes
     path('/api/v1/lessons/latest/get', views.apiGetLessons, name="apiGetLessons"),
-    path('api/v1/users/create', views.createUser, name="apiCreateUser"),
+    path('api/v1/users/create', views.apiCreateUserreateUser, name="apiCreateUser"),
 ]
