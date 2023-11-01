@@ -30,7 +30,7 @@ const Header = (props: HeaderProps) => {
   const iconSize: number = windowWidth * 0.1
 
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, !props.goBack ? {height: windowHeight * 0.15, marginBottom: windowHeight * 0.023} : {height: windowHeight * 0.12, marginBottom: 0}]}>
       {!props.goBack ?
       <TouchableOpacity onPress={accountHandler} style={styles.account}>
         <MaterialCommunityIcons name="account-circle-outline" size={iconSize} color="black" />
@@ -40,9 +40,9 @@ const Header = (props: HeaderProps) => {
         <AntDesign name="close" size={windowWidth * 0.1} color="black" />
       </TouchableOpacity>}
 
-      <View style={styles.logo}>
+      {!props.goBack && <View style={styles.logo}>
         <Image style={styles.logoImage} source={require('../assets/pebbleFull.png')}></Image>
-      </View>
+      </View>}
 
       <TouchableOpacity onPress={settingsHandler} style={styles.settings}>
         <MaterialIcons name="settings" size={iconSize} color="black" />
@@ -55,13 +55,10 @@ const Header = (props: HeaderProps) => {
 
 const styles = StyleSheet.create({
   header: {
-    height: windowHeight * 0.15,
     backgroundColor: 'transparent',
     flexDirection: 'row',
     paddingHorizontal: windowWidth * 20/390,
     alignItems: 'flex-end',
-    marginBottom: windowHeight * 0.023,
-
   },
 
   account: {

@@ -46,7 +46,7 @@ const VideoScreen = (props: VideoScreenProps) => {
 
       <View style={styles.info}>
         <View style={styles.text}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title} numberOfLines={2}>{title}</Text>
         </View>
         <View style={styles.transcriptButtonContainer}>
           <ImageButton
@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: windowHeight * 0.018,
     backgroundColor: 'black'
   },
 
@@ -101,13 +100,15 @@ const styles = StyleSheet.create({
 
   info: {
     flexDirection: 'row',
-    paddingHorizontal: windowWidth * 0.08,
-    height: windowHeight * 0.1,
+    paddingHorizontal: windowWidth * 20/390,
+    paddingTop: windowWidth * 10/390,
+    height: windowHeight * 0.08,
   },
 
   text: {
-    flex: 1,
-    justifyContent: 'center'
+    flex: 6,
+    justifyContent: 'flex-start',
+    // backgroundColor: 'red'
   },
 
   title: {
@@ -124,6 +125,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-end',
     justifyContent: 'center',
+    // backgroundColor: 'red'
     
   },
 

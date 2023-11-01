@@ -44,7 +44,7 @@ function VideoStuff(props: VideoStuffProps) {
       </View>
 
       <View style={styles.info}>
-        <Text style={styles.title}>{props.title}</Text>
+        <Text style={styles.title} numberOfLines={2}>{props.title}</Text>
         <Text style={styles.description}>filler tbd</Text>
       </View>
 
@@ -94,8 +94,9 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: windowWidth * 0.05,
+    fontSize: windowWidth * 0.047,
     fontWeight: 'normal',
+    paddingRight: windowWidth * 0.035
   },
 
   description: {
